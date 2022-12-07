@@ -1,41 +1,40 @@
-import numpy as np 
-import pandas as pd 
-import matplotlib.pyplot as plt 
-import seaborn as sns 
- 
-sns.set_style("whitegrid") 
- 
-sqrt = np.sqrt 
-cos = np.cos 
-sin = np.sin 
-abs = np.abs 
- 
- 
-def chiedi_equaz():
-    n_f = int(input("Inserisci il numero delle funzioni: ")) 
- 
-    formule = {} 
-    for i in range(1, n_f + 1): 
-        nome_f = f"funzione_{i}" 
-        print(f"Inserisci la formula della funzione {i}: ") 
-        formule[nome_f] = input("f(x) = ") 
-    return formule
- 
- 
-def crea_df(formule):
-    df = pd.DataFrame(np.arange(-50, 51), columns=["x"]) 
-    df_positivo = df[df["x"] >= 0] 
+import sympy as sp
+
+
+def ask_func():
+    funcs = {}
     
-    for formula in formule.keys(): 
-        if formule[formula].__contains__('sqrt') or formule[formula] == '3/x' or formule[formula] == '-3/x': 
-            df[formula] = df_positivo.apply(lambda x: eval(formule[formula])) 
-        else: 
-            df[formula] = df['x'].apply(lambda x: eval(formule[formula])) 
-   
-   
-def plots(df, formule):  
-    for formula in formule.keys(): 
-        f = sns.lineplot(x="x", y=formula, data=df) 
-        f.set_title(formule[formula]) 
-        f.set(xlabel="x", ylabel="y") 
-        plt.show()
+    n_f = int(input("Inserisci in numero di funzioni: "))
+    if n_f < 1:
+        exit()
+    for i in range(1, n_f + 1):
+        try:
+            f = input("Inserisci la funzione: ")
+            nome = f'func_{i}'
+            funcs[nome] = f
+        except:
+            print("Funzione non valida")
+            ret = str(input("Vuoi riprovare? (y/n): "))
+            if ret == 'y':
+                ask_func()
+            else:
+                exit()
+        return funcs
+        
+
+        
+        
+def main():
+    functions = ask_func()
+    x = sp.Symbol('x')
+    y = sp.Symbol('y')
+    if functions:
+        print(functions)
+        p = sp.plot(functions['func_1'], show=False)
+        print(p)
+        p.show()
+        
+    
+if __name__ == "__main__":
+    main()
+    
