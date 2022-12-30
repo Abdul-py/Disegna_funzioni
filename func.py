@@ -11,7 +11,6 @@ sns.set_style("whitegrid")
 # Setting the operators
 sqrt = np.sqrt
 log = np.log
-abs = np.abs
 sin = np.sin
 cos = np.cos
 
