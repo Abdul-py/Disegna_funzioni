@@ -19,6 +19,7 @@ cos = np.cos
 # Setting the global variable
 x = sp.Symbol("x")
 
+
 # Creating the fnction to get the function type
 def tipo_f():
     print("Che tipo di funzione vuoi disegnare?")
