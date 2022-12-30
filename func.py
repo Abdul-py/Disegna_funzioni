@@ -17,7 +17,7 @@ cos = np.cos
 
 
 # Setting the global variable
-x = sp.Symbol('x')
+x = sp.Symbol("x")
 
 # Creating the fnction to get the function type
 def tipo_f():
@@ -36,8 +36,8 @@ def tipo_f():
     except ValueError:
         print("Inserisci un numero valido")
         return tipo_f()
-    
-    
+
+
 # Creating the function to get the function's expression as input
 def input_eq(tipo):
     if tipo == "intera":
@@ -55,13 +55,13 @@ def input_eq(tipo):
         except ValueError:
             print("Inserisci una funzione valida!!")
             return input_eq(tipo)
-        
-        
+
+
 # Creating the function to create the dataframe for the plot if the function is "Intera"
 def df_intera(f):
     df = pd.DataFrame()
-    df['x'] = np.linspace(-50, 50, 1001)
-    df['y'] = df["x"].apply(lambda x: eval(f))
+    df["x"] = np.linspace(-50, 50, 1001)
+    df["y"] = df["x"].apply(lambda x: eval(f))
     return df
 
 
@@ -70,22 +70,22 @@ def df_fraz(num, den):
     valori_da_escludere = np.array(sp.solve(den))
     f = "(" + num + ")/(" + den + ")"
     df = pd.DataFrame()
-    df['x'] = np.linspace(-50, 50, 201)
-    cond = df['x'].isin(valori_da_escludere)
-    df['x'] = df[~cond]
-    df['y'] = df["x"].apply(lambda x: eval(f))
+    df["x"] = np.linspace(-50, 50, 201)
+    cond = df["x"].isin(valori_da_escludere)
+    df["x"] = df[~cond]
+    df["y"] = df["x"].apply(lambda x: eval(f))
     return df
-    
-    
+
+
 # Creating the function to plot the function
 def plot(df):
-    p = sns.scatterplot(x = "x", y = "y", data = df)
+    p = sns.scatterplot(x="x", y="y", data=df)
     p.set_title("Grafico della funzione")
     p.set_xlabel("x")
     p.set_ylabel("y")
     plt.show()
-    
-    
+
+
 def main():
     tipo = tipo_f()
 
@@ -97,6 +97,7 @@ def main():
         df = df_fraz(num, den)
 
     plot(df)
+
 
 if __name__ == "__main__":
     main()
