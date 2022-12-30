@@ -28,11 +28,10 @@ def tipo_f():
         tipo = int(input("Inserisci il numero corrispondente: "))
         if tipo == 1:
             return "intera"
-        elif tipo == 2:
+        if tipo == 2:
             return "frazionaria"
-        else:
-            print("Inserisci un numero valido")
-            return tipo_f()
+        print("Inserisci un numero valido")
+        return tipo_f()
     except ValueError:
         print("Inserisci un numero valido")
         return tipo_f()
