@@ -4,9 +4,9 @@ import seaborn as sns
 import pandas as pd
 import sympy as sp
 
-
+# Customizing the plot
 sns.set_style("whitegrid")
-
+sns.set(rc={"axes.facecolor": "#E0FFFF", "figure.facecolor": "#E0FFFF"})
 
 # Setting the operators
 sqrt = np.sqrt
@@ -78,7 +78,9 @@ def df_fraz(num, den):
 
 # Creating the function to plot the function
 def plot(df):
-    p = sns.scatterplot(x="x", y="y", data=df)
+    p = sns.scatterplot(
+        x="x", y="y", data=df, color="#88F013", edgecolor="black", linewidth=0.1
+    )
     p.set_title("Grafico della funzione")
     p.set_xlabel("x")
     p.set_ylabel("y")
